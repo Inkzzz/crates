@@ -11,6 +11,8 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import co.melondev.spigot.crates.crates.types.spinner.SpinnerCrate;
+
 public final class Crates {
 	
 	private final Map<String, Crate> crates = new HashMap<>();

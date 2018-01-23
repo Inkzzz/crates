@@ -1,6 +1,8 @@
 package co.melondev.spigot.crates.crates;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import java.util.ListIterator;
 import java.util.UUID;
@@ -13,6 +15,7 @@ public final class CrateContext {
 	private final ListIterator<Phase> phases;
 	private final CrateOpenTask openTask;
 	
+	private Inventory inventory;
 	private Phase currentPhase;
 	private CrateReward currentReward;
 
@@ -23,6 +26,8 @@ public final class CrateContext {
 		
 		this.phases = crate.getPhases().listIterator();
 		this.currentPhase = this.phases.next();
+		
+		this.inventory = Bukkit.createInventory(null, 54, "Crate: " + crate.getName());
 		
 		this.openTask = new CrateOpenTask(this);
 	}
@@ -62,6 +67,10 @@ public final class CrateContext {
 	
 	public void setCurrentReward(CrateReward currentReward) {
 		this.currentReward = currentReward;
+	}
+	
+	public Inventory getInventory() {
+		return this.inventory;
 	}
 	
 }

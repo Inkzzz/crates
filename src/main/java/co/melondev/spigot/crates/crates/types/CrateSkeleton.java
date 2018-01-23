@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates;
+package co.melondev.spigot.crates.crates.types;
 
 import org.bukkit.Material;
 
@@ -7,7 +7,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-abstract class CrateSkeleton implements Crate {
+import co.melondev.spigot.crates.crates.Crate;
+import co.melondev.spigot.crates.crates.CrateReward;
+
+public abstract class CrateSkeleton implements Crate {
 	
 	private final String name;
 	private final Material blockType;
