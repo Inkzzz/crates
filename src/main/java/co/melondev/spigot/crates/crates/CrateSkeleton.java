@@ -2,10 +2,17 @@ package co.melondev.spigot.crates.crates;
 
 import org.bukkit.Material;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
+
 abstract class CrateSkeleton implements Crate {
 	
 	private final String name;
 	private final Material blockType;
+	
+	protected final List<CrateReward> rewards = new ArrayList<>();
 	
 	public CrateSkeleton(String name, Material blockType) {
 		this.name = name;
@@ -20,6 +27,21 @@ abstract class CrateSkeleton implements Crate {
 	@Override
 	public Material getBlockType() {
 		return this.blockType;
+	}
+	
+	@Override
+	public List<CrateReward> getRewards() {
+		return Collections.unmodifiableList(this.rewards);
+	}
+	
+	@Override
+	public Stream<CrateReward> streamRewards() {
+		return this.rewards.stream();
+	}
+	
+	@Override
+	public CrateReward selectRandomReward() {
+		return null;
 	}
 	
 }
