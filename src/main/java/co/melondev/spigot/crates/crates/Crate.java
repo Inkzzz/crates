@@ -25,4 +25,6 @@ public interface Crate {
 	
 	void openCrate(Player player);
 	
+	List<Phase> getPhases();
+	
 }
