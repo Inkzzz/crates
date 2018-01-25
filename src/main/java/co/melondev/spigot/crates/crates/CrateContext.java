@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import java.util.ListIterator;
+import java.util.Objects;
 import java.util.UUID;
 
 public final class CrateContext {
@@ -19,7 +20,7 @@ public final class CrateContext {
 	private Phase currentPhase;
 	private CrateReward currentReward;
 
-	public CrateContext(Player player, Crate crate) {
+	private CrateContext(Player player, Crate crate) {
 		this.player = player;
 		this.uniqueId = player.getUniqueId();
 		this.crate = crate;
@@ -30,6 +31,13 @@ public final class CrateContext {
 		this.inventory = Bukkit.createInventory(null, 54, "Crate: " + crate.getName());
 		
 		this.openTask = new CrateOpenTask(this);
+	}
+	
+	public static CrateContext createContext(Player player, Crate crate) {
+		Objects.requireNonNull(player, "player");
+		Objects.requireNonNull(crate, "crate");
+		
+		return new CrateContext(player, crate);
 	}
 	
 	public UUID getUniqueId() {

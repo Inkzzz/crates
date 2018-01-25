@@ -7,6 +7,10 @@ import java.util.Objects;
 
 public final class WeightedTable<T> {
 	
+	public static <T> Builder<T> builder() {
+		return new Builder<>();
+	}
+	
 	public static final class Builder<T> {
 		
 		private final List<WeightedValue<T>> weightedValues = new ArrayList<>();

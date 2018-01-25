@@ -1,8 +1,9 @@
 package co.melondev.spigot.crates.crates;
 
+import java.util.List;
 import java.util.ListIterator;
 
-public final class Phase {
+public class Phase {
 	
 	private final int phaseLength;
 	private final int phaseRefreshInterval;
@@ -10,10 +11,10 @@ public final class Phase {
 	
 	private int executedTime;
 	
-	public Phase(int phaseLength, int phaseRefreshInterval, ListIterator<PhaseExecution> phaseExecutionListIterator) {
+	public Phase(int phaseLength, int phaseRefreshInterval, List<PhaseExecution> phaseExecutions) {
 		this.phaseLength = phaseLength;
 		this.phaseRefreshInterval = phaseRefreshInterval;
-		this.phaseExecutionListIterator = phaseExecutionListIterator;
+		this.phaseExecutionListIterator = phaseExecutions.listIterator();
 	}
 	
 	public int getPhaseLength() {

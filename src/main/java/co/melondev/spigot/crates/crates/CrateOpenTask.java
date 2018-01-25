@@ -2,11 +2,18 @@ package co.melondev.spigot.crates.crates;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import co.melondev.spigot.crates.CratePlugin;
 
 public final class CrateOpenTask extends BukkitRunnable {
+	
+	public static final long RUN_TICKS = 5;
+	
+	public static long secondsToRunTicks(int seconds) {
+		return seconds * RUN_TICKS;
+	}
 	
 	private final CrateContext context;
 	
@@ -22,6 +29,8 @@ public final class CrateOpenTask extends BukkitRunnable {
 			this.terminate();
 			return;
 		}
+		
+		this.openInventoryIfClosed(player);
 		
 		Phase phase = this.context.currentPhase();
 		
@@ -55,6 +64,14 @@ public final class CrateOpenTask extends BukkitRunnable {
 		}
 		
 		phase.incrementExecutionTime();
+	}
+	
+	private void openInventoryIfClosed(Player player) {
+		Inventory inventory = player.getOpenInventory().getTopInventory();
+		
+		if (inventory == null || !inventory.getTitle().equals(this.context.getInventory().getTitle())) {
+			player.openInventory(this.context.getInventory());
+		}
 	}
 	
 	private void terminate() {
