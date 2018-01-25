@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import co.melondev.spigot.crates.crates.Phase;
@@ -14,7 +15,7 @@ public class SpinnerCrate extends CrateSkeleton {
 	private static final ItemStack CRATE_KEY = new ItemStack(Material.IRON_HOE, 1);
 	
 	public SpinnerCrate() {
-		super("Spinner", Material.ENDER_CHEST, null);
+		super("Spinner", Material.ENDER_CHEST, Collections.emptyList());
 	}
 	
 	@Override
@@ -29,7 +30,7 @@ public class SpinnerCrate extends CrateSkeleton {
 	
 	@Override
 	public List<Phase> getPhases() {
-		return Arrays.asList(new PhaseCountdown());
+		return Arrays.asList(new PhaseCountdown(), new StageOneScrollerPhase(), new StageTwoScrollerPhase());
 	}
 	
 }

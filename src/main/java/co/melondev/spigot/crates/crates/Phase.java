@@ -5,23 +5,23 @@ import java.util.ListIterator;
 
 public class Phase {
 	
-	private final int phaseLength;
-	private final int phaseRefreshInterval;
+	private final long phaseLength;
+	private final long phaseRefreshInterval;
 	private final ListIterator<PhaseExecution> phaseExecutionListIterator;
 	
 	private int executedTime;
 	
-	public Phase(int phaseLength, int phaseRefreshInterval, List<PhaseExecution> phaseExecutions) {
+	public Phase(long phaseLength, long phaseRefreshInterval, List<PhaseExecution> phaseExecutions) {
 		this.phaseLength = phaseLength;
 		this.phaseRefreshInterval = phaseRefreshInterval;
 		this.phaseExecutionListIterator = phaseExecutions.listIterator();
 	}
 	
-	public int getPhaseLength() {
+	public long getPhaseLength() {
 		return this.phaseLength;
 	}
 	
-	public int getPhaseRefreshInterval() {
+	public long getPhaseRefreshInterval() {
 		return this.phaseRefreshInterval;
 	}
 	
@@ -38,6 +38,10 @@ public class Phase {
 	}
 	
 	public PhaseExecution getNextPhaseExecution() {
+		if (this.isPhaseOver()) {
+			return null;
+		}
+		
 		return this.phaseExecutionListIterator.hasNext() ? this.phaseExecutionListIterator.next() : null;
 	}
 	

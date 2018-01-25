@@ -11,10 +11,6 @@ public final class CrateOpenTask extends BukkitRunnable {
 	
 	public static final long RUN_TICKS = 5;
 	
-	public static long secondsToRunTicks(int seconds) {
-		return seconds * RUN_TICKS;
-	}
-	
 	private final CrateContext context;
 	
 	public CrateOpenTask(CrateContext context) {

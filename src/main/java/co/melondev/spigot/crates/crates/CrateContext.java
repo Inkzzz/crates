@@ -4,8 +4,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 public final class CrateContext {
@@ -15,6 +19,8 @@ public final class CrateContext {
 	private final Crate crate;
 	private final ListIterator<Phase> phases;
 	private final CrateOpenTask openTask;
+	
+	private final Map<Integer, CrateReward> crateRewardSlots = new HashMap<>();
 	
 	private Inventory inventory;
 	private Phase currentPhase;
@@ -79,6 +85,22 @@ public final class CrateContext {
 	
 	public Inventory getInventory() {
 		return this.inventory;
+	}
+	
+	public Optional<CrateReward> getReward(int slot) {
+		return Optional.ofNullable(this.crateRewardSlots.get(slot));
+	}
+	
+	public boolean isReward(int slot) {
+		return this.crateRewardSlots.containsKey(slot);
+	}
+	
+	public void setReward(int slot, CrateReward reward) {
+		this.crateRewardSlots.put(slot, reward);
+	}
+	
+	public Map<Integer, CrateReward> getCrateRewardSlots() {
+		return Collections.unmodifiableMap(this.crateRewardSlots);
 	}
 	
 }
