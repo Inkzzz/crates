@@ -34,7 +34,7 @@ public final class CrateContext {
 		this.phases = crate.getPhases().listIterator();
 		this.currentPhase = this.phases.next();
 		
-		this.inventory = Bukkit.createInventory(null, 54, "Crate: " + crate.getName());
+		this.inventory = Bukkit.createInventory(null, 5 * 9, "Crate: " + crate.getName());
 		
 		this.openTask = new CrateOpenTask(this);
 	}
@@ -63,12 +63,14 @@ public final class CrateContext {
 	}
 	
 	public Phase nextPhase() {
-		if (!this.phases.hasNext()) {
-			return null;
+		Phase next = null;
+		
+		if (this.phases.hasNext()) {
+			next = this.phases.next();
 		}
 		
-		this.currentPhase = this.phases.next();
-		return this.currentPhase;
+		this.currentPhase = next;
+		return next;
 	}
 	
 	public Phase currentPhase() {
@@ -85,6 +87,11 @@ public final class CrateContext {
 	
 	public Inventory getInventory() {
 		return this.inventory;
+	}
+	
+	public void setInventory(Inventory inventory) {
+		Objects.requireNonNull(inventory, "inventory");
+		this.inventory = inventory;
 	}
 	
 	public Optional<CrateReward> getReward(int slot) {

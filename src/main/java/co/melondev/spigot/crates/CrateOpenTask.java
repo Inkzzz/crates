@@ -58,6 +58,8 @@ public final class CrateOpenTask extends BukkitRunnable {
 		}
 		
 		phase.incrementExecutionTime();
+		
+		player.updateInventory();
 	}
 	
 	private void openInventoryIfClosed(Player player) {

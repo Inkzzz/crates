@@ -19,7 +19,7 @@ class PhaseCountdown extends Phase {
 	private static final ItemStack RED_GLASS = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 14);
 	
 	public PhaseCountdown() {
-		super(3, 4, Arrays.asList(new PhaseExecutionCountdown3(),
+		super(12, 4, Arrays.asList(new PhaseExecutionCountdown3(),
 				new PhaseExecutionCountdown2(), new PhaseExecutionCountdown1())
 		);
 	}

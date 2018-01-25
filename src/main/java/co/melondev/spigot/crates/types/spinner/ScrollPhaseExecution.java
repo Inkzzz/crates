@@ -1,8 +1,11 @@
 package co.melondev.spigot.crates.types.spinner;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Map;
 
 import co.melondev.spigot.crates.CrateContext;
 import co.melondev.spigot.crates.CrateReward;
@@ -22,11 +25,18 @@ public class ScrollPhaseExecution implements PhaseExecution {
 				context.setReward(i, this.selectReward(context));
 			}
 			
-			inventory.clear();
+			inventory = Bukkit.createInventory(null, 27, "Crate: " + context.getCrate().getName());
+			context.setInventory(inventory);
+			
 			for (int i = 0; i < inventory.getSize(); i++) {
-				inventory.setItem(i, GRAY_GLASS);
+				if (i == 4 || i == 22) {
+					inventory.setItem(i, new ItemStack(Material.REDSTONE_TORCH_ON));
+				} else {
+					inventory.setItem(i, GRAY_GLASS);
+				}
 			}
 			
+			context.getPlayer().openInventory(inventory);
 		} else {
 			for (int i = 0; i <= 8; i++) {
 				if (i == 0) {
@@ -43,7 +53,9 @@ public class ScrollPhaseExecution implements PhaseExecution {
 		
 		context.setCurrentReward(context.getReward(4).orElseThrow(IllegalStateException::new));
 		
-		context.getCrateRewardSlots().forEach((slot, reward) -> inventory.setItem(slot, reward.getDisplayItem()));
+		for (Map.Entry<Integer, CrateReward> entry : context.getCrateRewardSlots().entrySet()) {
+			inventory.setItem(entry.getKey() + 9, entry.getValue().getDisplayItem());
+		}
 	}
 	
 	private CrateReward selectReward(CrateContext context) {

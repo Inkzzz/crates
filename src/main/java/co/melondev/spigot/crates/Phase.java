@@ -10,6 +10,7 @@ public class Phase {
 	private final ListIterator<PhaseExecution> phaseExecutionListIterator;
 	
 	private int executedTime;
+	private int executedPhaseTime;
 	
 	public Phase(long phaseLength, long phaseRefreshInterval, List<PhaseExecution> phaseExecutions) {
 		this.phaseLength = phaseLength;
@@ -30,17 +31,20 @@ public class Phase {
 	}
 	
 	public boolean shouldCallNextPhaseExecution() {
-		return this.executedTime % this.phaseRefreshInterval == 0;
+		return this.executedTime == 0 || this.executedPhaseTime >= this.phaseRefreshInterval;
 	}
 	
 	public void incrementExecutionTime() {
 		this.executedTime++;
+		this.executedPhaseTime++;
 	}
 	
 	public PhaseExecution getNextPhaseExecution() {
 		if (this.isPhaseOver()) {
 			return null;
 		}
+		
+		this.executedPhaseTime = 0;
 		
 		return this.phaseExecutionListIterator.hasNext() ? this.phaseExecutionListIterator.next() : null;
 	}

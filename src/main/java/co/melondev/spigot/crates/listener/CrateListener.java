@@ -6,8 +6,9 @@ import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Inventory;
 
 import co.melondev.spigot.crates.CratePlugin;
 import co.melondev.spigot.crates.Crates;
@@ -30,16 +31,29 @@ public class CrateListener implements Listener {
 			return;
 		}
 		
-		event.setCancelled(true);
-		event.setUseInteractedBlock(Event.Result.DENY);
-		event.setUseItemInHand(Event.Result.DENY);
-		
-		ItemStack itemKey = player.getItemInHand();
-		
-		crates.getCrate(itemKey).ifPresent(crate -> {
+		crates.getCrate(player.getItemInHand()).ifPresent(crate -> {
+			event.setCancelled(true);
+			event.setUseInteractedBlock(Event.Result.DENY);
+			event.setUseItemInHand(Event.Result.DENY);
+			
 			player.getInventory().removeItem(crate.getKey());
 			crate.openCrate(player);
 		});
+	}
+	
+	@EventHandler
+	private void on(InventoryClickEvent event) {
+		if (!(event.getWhoClicked() instanceof Player)) {
+			return;
+		}
+		
+		Inventory inventory = event.getClickedInventory();
+		
+		if (inventory == null || !inventory.getTitle().startsWith("Crate: ")) {
+			return;
+		}
+		
+		event.setCancelled(true);
 	}
 	
 }
