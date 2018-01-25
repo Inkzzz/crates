@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates;
+package co.melondev.spigot.crates;
 
 import java.util.List;
 import java.util.ListIterator;

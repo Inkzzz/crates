@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates.types;
+package co.melondev.spigot.crates.types;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import co.melondev.spigot.crates.CratePlugin;
-import co.melondev.spigot.crates.crates.Crate;
-import co.melondev.spigot.crates.crates.CrateContext;
-import co.melondev.spigot.crates.crates.CrateOpenTask;
-import co.melondev.spigot.crates.crates.CrateReward;
-import co.melondev.spigot.crates.crates.weight.WeightedTable;
-import co.melondev.spigot.crates.crates.weight.WeightedValue;
+import co.melondev.spigot.crates.Crate;
+import co.melondev.spigot.crates.CrateContext;
+import co.melondev.spigot.crates.CrateOpenTask;
+import co.melondev.spigot.crates.CrateReward;
+import co.melondev.spigot.crates.weight.WeightedTable;
+import co.melondev.spigot.crates.weight.WeightedValue;
 
 public abstract class CrateSkeleton implements Crate {
 	

@@ -1,20 +1,32 @@
-package co.melondev.spigot.crates.crates.types.spinner;
+package co.melondev.spigot.crates.types.spinner;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
-import co.melondev.spigot.crates.crates.CrateContext;
-import co.melondev.spigot.crates.crates.CrateReward;
-import co.melondev.spigot.crates.crates.PhaseExecution;
+import co.melondev.spigot.crates.CrateContext;
+import co.melondev.spigot.crates.CrateReward;
+import co.melondev.spigot.crates.PhaseExecution;
 
 public class ScrollPhaseExecution implements PhaseExecution {
 	
+	private static final ItemStack GRAY_GLASS = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 7);
+	
 	@Override
 	public void execute(CrateContext context) {
+		Inventory inventory = context.getInventory();
+		
 		if (!context.isReward(0)) {
 			// no rewards, fill up
 			for (int i = 0; i <= 8; i++) {
 				context.setReward(i, this.selectReward(context));
 			}
+			
+			inventory.clear();
+			for (int i = 0; i < inventory.getSize(); i++) {
+				inventory.setItem(i, GRAY_GLASS);
+			}
+			
 		} else {
 			for (int i = 0; i <= 8; i++) {
 				if (i == 0) {
@@ -30,8 +42,6 @@ public class ScrollPhaseExecution implements PhaseExecution {
 		}
 		
 		context.setCurrentReward(context.getReward(4).orElseThrow(IllegalStateException::new));
-		
-		Inventory inventory = context.getInventory();
 		
 		context.getCrateRewardSlots().forEach((slot, reward) -> inventory.setItem(slot, reward.getDisplayItem()));
 	}

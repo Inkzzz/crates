@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates;
+package co.melondev.spigot.crates;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import co.melondev.spigot.crates.crates.types.spinner.SpinnerCrate;
+import co.melondev.spigot.crates.types.spinner.SpinnerCrate;
 
 public final class Crates {
 	

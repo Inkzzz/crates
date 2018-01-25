@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates.weight;
+package co.melondev.spigot.crates.weight;
 
 public final class WeightedValue<T> implements Weighted<WeightedValue<T>> {
 	

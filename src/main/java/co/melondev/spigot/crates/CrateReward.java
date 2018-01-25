@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates;
+package co.melondev.spigot.crates;
 
 import com.google.common.collect.ImmutableList;
 
@@ -12,6 +12,10 @@ import java.util.stream.Collectors;
 public final class CrateReward {
 	
 	private static final String NAME_PLACEHOLDER = "%PLAYER%";
+	
+	public static Builder builder() {
+		return new Builder();
+	}
 	
 	public static final class Builder {
 		

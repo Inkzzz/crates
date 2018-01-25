@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates.weight;
+package co.melondev.spigot.crates.weight;
 
 import java.util.ArrayList;
 import java.util.Collection;

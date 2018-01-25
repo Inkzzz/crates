@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates.weight;
+package co.melondev.spigot.crates.weight;
 
 public interface Weighted<T extends Weighted<T>> extends Comparable<T> {
 	

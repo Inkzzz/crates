@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 import co.melondev.spigot.crates.CratePlugin;
-import co.melondev.spigot.crates.crates.Crates;
+import co.melondev.spigot.crates.Crates;
 
 public class CrateListener implements Listener {
 	

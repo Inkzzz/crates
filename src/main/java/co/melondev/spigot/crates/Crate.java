@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates;
+package co.melondev.spigot.crates;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

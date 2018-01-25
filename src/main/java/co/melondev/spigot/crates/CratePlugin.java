@@ -2,7 +2,6 @@ package co.melondev.spigot.crates;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import co.melondev.spigot.crates.crates.Crates;
 import co.melondev.spigot.crates.listener.CrateListener;
 
 public class CratePlugin extends JavaPlugin {

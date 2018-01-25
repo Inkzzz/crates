@@ -1,4 +1,4 @@
-package co.melondev.spigot.crates.crates.types.spinner;
+package co.melondev.spigot.crates.types.spinner;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -7,9 +7,9 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import co.melondev.spigot.crates.crates.CrateContext;
-import co.melondev.spigot.crates.crates.Phase;
-import co.melondev.spigot.crates.crates.PhaseExecution;
+import co.melondev.spigot.crates.CrateContext;
+import co.melondev.spigot.crates.Phase;
+import co.melondev.spigot.crates.PhaseExecution;
 
 class PhaseCountdown extends Phase {
 	

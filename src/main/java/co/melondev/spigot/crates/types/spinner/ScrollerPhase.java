@@ -1,9 +1,9 @@
-package co.melondev.spigot.crates.crates.types.spinner;
+package co.melondev.spigot.crates.types.spinner;
 
 import java.util.Collections;
 
-import co.melondev.spigot.crates.crates.Phase;
-import co.melondev.spigot.crates.crates.PhaseExecution;
+import co.melondev.spigot.crates.Phase;
+import co.melondev.spigot.crates.PhaseExecution;
 
 class ScrollerPhase extends Phase {
 	
