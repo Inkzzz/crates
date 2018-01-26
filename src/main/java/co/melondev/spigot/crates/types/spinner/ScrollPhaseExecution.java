@@ -38,21 +38,27 @@ public class ScrollPhaseExecution implements PhaseExecution {
 			
 			context.getPlayer().openInventory(inventory);
 		} else {
+			// scroll rewards
 			for (int i = 0; i <= 8; i++) {
 				if (i == 0) {
+					// first reward, ignore as its the one to remove!
 					continue;
 				}
 				
 				if (i == 8) {
+					// new reward
 					context.setReward(i, this.selectReward(context));
 				} else {
+					// shift rewards
 					context.setReward(i, context.getReward(i + 1).orElseGet(() -> this.selectReward(context)));
 				}
 			}
 		}
 		
+		// update final reward item
 		context.setCurrentReward(context.getReward(4).orElseThrow(IllegalStateException::new));
 		
+		// update display items in gui
 		for (Map.Entry<Integer, CrateReward> entry : context.getCrateRewardSlots().entrySet()) {
 			inventory.setItem(entry.getKey() + 9, entry.getValue().getDisplayItem());
 		}
