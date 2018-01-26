@@ -19,7 +19,7 @@ public final class CrateOpenTask extends BukkitRunnable {
 	public void run() {
 		Player player = this.context.getPlayer();
 		
-		if (!player.isOnline()) {
+		if (!player.isOnline()) { // player offline, terminate task
 			this.terminate();
 			return;
 		}
@@ -28,7 +28,7 @@ public final class CrateOpenTask extends BukkitRunnable {
 		
 		Phase phase = this.context.currentPhase();
 		
-		if (phase == null) {
+		if (phase == null) { // no more phases left - crate has finished
 			CrateReward reward = this.context.getCurrentReward();
 			
 			if (reward == null) {
@@ -44,12 +44,12 @@ public final class CrateOpenTask extends BukkitRunnable {
 			return;
 		}
 		
-		if (phase.isPhaseOver()) {
+		if (phase.isPhaseOver()) { // phase is over, move onto next phase
 			this.context.nextPhase();
 			return;
 		}
 		
-		if (phase.shouldCallNextPhaseExecution()) {
+		if (phase.shouldCallNextPhaseExecution()) { // phase execution is over, attempt to fetch next and execute it
 			PhaseExecution execution = phase.getNextPhaseExecution();
 			
 			if (execution != null) {
@@ -57,7 +57,7 @@ public final class CrateOpenTask extends BukkitRunnable {
 			}
 		}
 		
-		phase.incrementExecutionTime();
+		phase.incrementExecutionTime(); // increment phase timer
 		
 		player.updateInventory();
 	}

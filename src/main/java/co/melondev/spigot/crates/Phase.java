@@ -5,8 +5,8 @@ import java.util.ListIterator;
 
 public class Phase {
 	
-	private final long phaseLength;
-	private final long phaseRefreshInterval;
+	private final long phaseLength; // max crate refresh times
+	private final long phaseRefreshInterval; // crate refresh time interval between calling executions
 	private final ListIterator<PhaseExecution> phaseExecutionListIterator;
 	
 	private int executedTime;
