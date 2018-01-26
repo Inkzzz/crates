@@ -51,7 +51,8 @@ class PhaseCountdown extends Phase {
 			
 			inventory.clear();
 			
-			IntStream.of(12, 13, 14, 22, 30, 31, 32).forEach(slot -> inventory.setItem(slot, YELLOW_GLASS));
+			IntStream.of(2, 3, 4, 5, 6, 15, 20, 21, 22, 23, 24, 29, 38, 39, 40, 41, 42)
+					.forEach(slot -> inventory.setItem(slot, YELLOW_GLASS));
 			
 			for (int i = 0; i < inventory.getSize(); i++) {
 				if (inventory.getItem(i) == null) {
